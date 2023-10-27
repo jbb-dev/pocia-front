@@ -1,14 +1,18 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { ERoutes } from '../shared/ERoutes';
+import { ERoutes } from '../shared/Navigation/ERoutes';
+import { DataStoreContext } from '../../store/rootStore';
 
 type Props = {}
 
 const Login = (props: Props) => {
 
+    const { user } = React.useContext(DataStoreContext);
+
     let navigate = useNavigate();
 
     const login = () => {
+        user.setIsAuth(true);
         navigate(ERoutes.CONVERSATION);
     };
     

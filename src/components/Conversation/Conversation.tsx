@@ -15,7 +15,8 @@ const Conversation: React.FC = observer(() => {
 
     const messageContainerRef = React.useRef<HTMLDivElement | null>(null);
 
-    const createNewMessage = async () => {
+    const createNewMessage = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         // First save the question asked by the user
         conversation.saveUserMessage();
         // Then send the message in order to wait for the assistant answer
@@ -37,7 +38,7 @@ const Conversation: React.FC = observer(() => {
     }, [conversation.currentConversation?.length]);
 
     return (
-        <div className="container mx-auto mt-8">
+        <form className="container mx-auto mt-8" onSubmit={createNewMessage}>
             <div
                 ref={messageContainerRef}
                 className="overflow-y-auto max-h-[80vh]"
@@ -52,10 +53,10 @@ const Conversation: React.FC = observer(() => {
                 onChange={handleTextChange}
             />
             <Button
+                type='submit'
                 label="Envoyer"
-                action={createNewMessage}
             />
-        </div>
+        </form>
     );
 });
 

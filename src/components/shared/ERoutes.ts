@@ -1,3 +1,6 @@
 export enum ERoutes {
-    CONVERSATION = '/'
+    LOGIN = '/',
+    CONVERSATION = '/conversation',
+    TEAM = '/team',
+    PROFILE = '/team/profile/:id'
 }

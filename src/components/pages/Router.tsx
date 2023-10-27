@@ -4,6 +4,9 @@ import { DataStoreContext } from '../../store/rootStore';
 import { Provider } from 'mobx-react';
 import { ERoutes } from '../shared/ERoutes';
 import Conversation from '../Conversation/Conversation';
+import Team from './Team';
+import Profile from '../Assistant/Profile';
+import Login from './Login';
 
 const Router = () => {
 
@@ -13,7 +16,10 @@ const Router = () => {
         <BrowserRouter>
             <Provider value={DataStoreContext}>
                 <Routes>
+                    <Route path={ERoutes.LOGIN} element={<Login />} />
                     <Route path={ERoutes.CONVERSATION} element={<Conversation />} />
+                    <Route path={ERoutes.TEAM} element={<Team />} />
+                    <Route path={ERoutes.PROFILE} element={<Profile />} />
                 </Routes>
             </Provider>
         </BrowserRouter>

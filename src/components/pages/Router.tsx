@@ -3,12 +3,12 @@ import { Route, BrowserRouter, Routes, Outlet, Navigate } from "react-router-dom
 import { DataStoreContext } from '../../store/rootStore';
 import { Provider, observer } from 'mobx-react';
 import { ERoutes } from '../shared/Navigation/ERoutes';
-import Conversation from '../Conversation/Conversation';
+import ConversationComponent from '../Conversation/ConversationComponent';
 import Team from './Team';
 import Profile from '../Assistant/Profile';
 import Login from './Login';
 import SideBar from '../shared/Navigation/SideBar';
-import Header from '../shared/Navigation/Header';
+import Conversation from './Conversation';
 
 const PrivateRoutes: React.FC = observer(() => {
 
@@ -18,10 +18,8 @@ const PrivateRoutes: React.FC = observer(() => {
         isAuth ? 
             <>
                 <SideBar />
-                <div className="pt-14 sm:ml-64">
-                    <div className="px-6">
+                <div className="pt-14 sm:ml-64 ">
                         <Outlet />
-                    </div>
                 </div> 
             </>
         : 

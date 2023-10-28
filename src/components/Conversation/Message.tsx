@@ -8,12 +8,12 @@ export enum EWriterRole {
 }
 
 type Props = {
-    data: IMessage
+    data: IMessage | null
 };
 
 const Message: React.FC<Props> = (props: Props) => {
 
-    const isMessageFromUser: boolean = props.data.senderRole === EWriterRole.USER;
+    const isMessageFromUser: boolean = props.data?.senderRole === EWriterRole.USER;
 
     const messageClass = isMessageFromUser 
         ? "bg-blue-300 p-2 rounded-lg mb-2 ml-2" 
@@ -31,7 +31,7 @@ const Message: React.FC<Props> = (props: Props) => {
                 />
             )}
             <div className={messageClass}>
-                {props.data.content}
+                {props.data?.content}
             </div>
             {isMessageFromUser && (
                 <img

@@ -2,7 +2,9 @@ import React from 'react'
 
 const ListAssistant = () => {
   return (
-    <div>ListAssistant</div>
+    <div className='h-full px-3 border border-gray-200 bg-red-600'>
+        ListAssistant
+    </div>
   )
 }
 

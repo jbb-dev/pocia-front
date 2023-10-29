@@ -1,4 +1,16 @@
-import React from 'react'
+import React from 'react';
+
+export interface IAssistant {
+  name: string;
+  service: string;
+  biography: string;
+  avatar: string;
+};
+
+const dataAssistant: IAssistant[] = [
+  { name: "Paul", service: "Marketing", biography: "dqds", avatar:'' }
+]
+
 
 type Props = {}
 

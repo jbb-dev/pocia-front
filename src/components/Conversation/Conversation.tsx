@@ -5,7 +5,7 @@ import { DataStoreContext } from '../../store/rootStore';
 import TextInput from '../shared/TextInput';
 import Button from '../shared/Button';
 
-const ConversationComponent: React.FC = observer(() => {
+const Conversation: React.FC = observer(() => {
 
     const { conversation } = React.useContext(DataStoreContext);
 
@@ -20,7 +20,7 @@ const ConversationComponent: React.FC = observer(() => {
         // First save the question asked by the user
         conversation.saveUserMessage();
         // Then send the message in order to wait for the assistant answer
-        // await conversation.sendMessage();
+        await conversation.sendMessage();
     };
 
     // Run fetch current conversation
@@ -67,4 +67,4 @@ const ConversationComponent: React.FC = observer(() => {
     );
 });
 
-export default ConversationComponent;
+export default Conversation;

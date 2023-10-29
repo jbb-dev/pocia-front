@@ -3,12 +3,11 @@ import { Route, BrowserRouter, Routes, Outlet, Navigate } from "react-router-dom
 import { DataStoreContext } from '../../store/rootStore';
 import { Provider, observer } from 'mobx-react';
 import { ERoutes } from '../shared/Navigation/ERoutes';
-import ConversationComponent from '../Conversation/ConversationComponent';
 import Team from './Team';
 import Profile from '../Assistant/Profile';
 import Login from './Login';
 import SideBar from '../shared/Navigation/SideBar';
-import Conversation from './Conversation';
+import Conversation from '../Conversation/Conversation';
 
 const PrivateRoutes: React.FC = observer(() => {
 

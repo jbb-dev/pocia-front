@@ -59,6 +59,7 @@ const Conversation: React.FC = observer(() => {
                         <Button
                             type='submit'
                             label="Envoyer"
+                            action={() => null}
                         />
                     </div>
                 </div>

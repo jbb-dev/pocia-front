@@ -2,16 +2,22 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ERoutes } from '../shared/Navigation/ERoutes';
 import { IAssistant } from '../../store/assistantStore';
+import { DataStoreContext } from '../../store/rootStore';
 
 type Props = {
-    data: IAssistant
+    data: IAssistant;
 }
 
 const AssistantCard: React.FC<Props> = (props: Props) => {
 
+    const { assistant } = React.useContext(DataStoreContext);
+
     let navigate = useNavigate();
 
-    const moveToProfile = () => navigate(ERoutes.PROFILE);
+    const moveToProfile = () => {
+        assistant.setTempAssistant(props.data);
+        navigate(ERoutes.PROFILE);
+    };
 
     return (
         <div 
@@ -20,7 +26,7 @@ const AssistantCard: React.FC<Props> = (props: Props) => {
         >
             <img src={props.data.avatar} alt="" className="mb-4 inline-block h-52 w-full object-cover" />
             <p className="font-bold">{props.data.name}</p>
-            <p className="text-sm text-[#636262]">{props.data.service}</p>
+            <p className="text-sm text-[#636262]">{props.data.job}</p>
         </div>  
     );
 };

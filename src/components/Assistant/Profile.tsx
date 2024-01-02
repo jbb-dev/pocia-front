@@ -1,9 +1,10 @@
 import React from "react";
 import Button from "../shared/Button";
+import { DataStoreContext } from "../../store/rootStore";
 
-type Props = {};
+const Profile: React.FC = () => {
 
-const Profile = (props: Props) => {
+  const { assistant: { tempAssistant } } = React.useContext(DataStoreContext);
 
   const selectProfile = () => console.log('select profile')
 
@@ -17,15 +18,13 @@ const Profile = (props: Props) => {
               <p className="text-sm">Available for work</p>
             </div>
             <p className="text-sm text-[#808080] sm:text-xl">
-              Developer &amp; UX Specialist
+              {tempAssistant?.job}
             </p>
             <h1 className="mb-6 text-4xl font-bold md:text-6xl lg:mb-8">
-              Jonathan Smith
+              {tempAssistant?.name}
             </h1>
             <p className="text-sm text-[#808080] sm:text-xl">
-              Consectetur adipiscing elit duis tristique sollicitudin nibh.
-              Augue mauris augue neque gravida in fermentum. Sapien pellentesque
-              habitant morbi tristique pellentesque.
+              {tempAssistant?.biography}
             </p>
             <div className="mb-8 mt-8 h-px w-full bg-black"></div>
             <div className="mb-6 flex flex-col gap-2 text-sm text-[#808080] sm:text-base lg:mb-8">
@@ -42,7 +41,9 @@ const Profile = (props: Props) => {
               action={selectProfile}
             />
           </div>
-          <div className="min-h-[530px] overflow-hidden rounded-md bg-[#f2f2f7]"></div>
+          <div className="min-h-[530px] overflow-hidden rounded-md bg-[#f2f2f7]">
+            <img src={tempAssistant?.avatar} alt="" className="h-full w-full object-cover" />
+          </div>
         </div>
       </div>
     </section>

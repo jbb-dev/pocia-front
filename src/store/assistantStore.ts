@@ -5,7 +5,7 @@ import { EToastStatus } from "../components/shared/Toast";
 
 export interface IAssistant {
     name: string;
-    service: string;
+    job: string;
     biography: string;
     avatar: string;
 }
@@ -16,6 +16,7 @@ export const AssistantStore = types
 .model({
     list : types.maybeNull(types.frozen<IAssistant[]>()),
     selectedAssistant: types.maybeNull(types.frozen<IAssistant>()),
+    tempAssistant: types.maybeNull(types.frozen<IAssistant>()),
 })
 .actions(self => ({
 
@@ -25,6 +26,10 @@ export const AssistantStore = types
 
     setSelectedAssistant(assistant: IAssistant) {
         self.selectedAssistant = assistant;
+    },
+
+    setTempAssistant(assistant: IAssistant) {
+        self.tempAssistant = assistant;
     },
 
 }))

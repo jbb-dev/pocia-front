@@ -1,13 +1,13 @@
-import React from 'react'
-import { IAssistant } from '../pages/Team';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ERoutes } from '../shared/Navigation/ERoutes';
+import { IAssistant } from '../../store/assistantStore';
 
 type Props = {
     data: IAssistant
 }
 
-const AssistantCard = (props: Props) => {
+const AssistantCard: React.FC<Props> = (props: Props) => {
 
     let navigate = useNavigate();
 

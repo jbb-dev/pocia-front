@@ -14,7 +14,7 @@ const Login = (props: Props) => {
 
     const login = () => {
         user.setIsAuth(true);
-        navigate(ERoutes.CONVERSATION);
+        navigate(ERoutes.TEAM);
     };
     
     return (

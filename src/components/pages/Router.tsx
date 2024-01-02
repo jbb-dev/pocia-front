@@ -33,18 +33,18 @@ const Router: React.FC = observer(() => {
     return (
         <BrowserRouter>
             <Provider value={DataStoreContext}>
-                        <Routes>
+                <Routes>
 
-                            {/* PUBLIC ROUTES */}
-                            <Route path={ERoutes.LOGIN} element={<Login />} />
+                    {/* PUBLIC ROUTES */}
+                    <Route path={ERoutes.LOGIN} element={<Login />} />
 
-                            {/* PRIVATE ROUTES */}
-                            <Route element={<PrivateRoutes />} >
-                                <Route path={ERoutes.CONVERSATION} element={<Conversation />} />
-                                <Route path={ERoutes.TEAM} element={<Team />} />
-                                <Route path={ERoutes.PROFILE} element={<Profile />} />
-                            </Route>
-                        </Routes>
+                    {/* PRIVATE ROUTES */}
+                    <Route element={<PrivateRoutes />} >
+                        <Route path={ERoutes.TEAM} element={<Team />} />
+                        <Route path={ERoutes.CONVERSATION} element={<Conversation />} />
+                        <Route path={ERoutes.PROFILE} element={<Profile />} />
+                    </Route>
+                </Routes>
             </Provider>
             
         </BrowserRouter>

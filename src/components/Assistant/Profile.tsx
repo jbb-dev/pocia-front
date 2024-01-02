@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../shared/Button";
 import { DataStoreContext } from "../../store/rootStore";
+import BackButton from "../shared/Navigation/BackButton";
 
 const Profile: React.FC = () => {
 
@@ -11,6 +12,7 @@ const Profile: React.FC = () => {
   return (
     <section>
       <div className="mx-auto w-full max-w-7xl px-5 py-12 md:px-10 md:py-16 lg:py-20">
+        <BackButton />
         <div className="grid gap-12 sm:gap-20 lg:grid-cols-2">
           <div className="flex flex-col items-start gap-2">
             <div className="flex items-center rounded-md bg-[#c4c4c4] px-3 py-1">

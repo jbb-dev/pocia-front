@@ -51,6 +51,7 @@ const SideBar = () => {
 
     const moveTo = (route: ERoutes) => {
         navigate(route);
+        toggleSidebar();
     };
 
     const isActive = (item: IMenuItem):boolean => {
@@ -108,7 +109,7 @@ const SideBar = () => {
             </nav>
 
             <aside id="logo-sidebar" className={sidebarClassName} aria-label="Sidebar">
-                <div className="h-full px-3 pt-20 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+                <div className="h-screen px-3 pt-20 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                     <ul className="space-y-2 font-medium">
                         {menuItems.map((item, index) =>
                             <li key={index}>

@@ -3,6 +3,7 @@ import { ERoutes } from './ERoutes';
 import {ReactComponent as ConversationIcon} from './../../../assets/sidebar/speak.svg';
 import {ReactComponent as LogoutIcon} from './../../../assets/sidebar/logout.svg';
 import {ReactComponent as TeamIcon} from './../../../assets/sidebar/team.svg';
+import Logo from './../../../assets/logo/logo192.png';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { HEADER_HEIGHT } from './Header';
 
@@ -72,10 +73,10 @@ const SideBar = () => {
                                 <path clipRule="evenodd" fillRule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                                 </svg>
                             </button>
-                            <a href="https://flowbite.com" className="flex ml-2 md:mr-24">
-                                <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="FlowBite Logo" />
+                            <div className="flex ml-2 md:mr-24">
+                                <img src={Logo} className="h-8 mr-3 rounded-full" alt="Logo" />
                                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">Pocia</span>
-                            </a>
+                            </div>
                         </div>
                         <div className="flex items-center">
                             <div className="flex items-center ml-3">
@@ -94,15 +95,6 @@ const SideBar = () => {
                                             </p>
                                         </div>
                                         <ul className="py-1" role="none">
-                                            <li>
-                                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover.bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Settings</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover.bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>
-                                            </li>
                                             <li>
                                                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover.bg-gray-100 dark:text-gray-300 dark:hover.bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
                                             </li>

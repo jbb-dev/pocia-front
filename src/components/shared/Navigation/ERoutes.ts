@@ -2,5 +2,6 @@ export enum ERoutes {
     LOGIN = '/',
     CONVERSATION = '/conversation',
     TEAM = '/team',
-    PROFILE = '/team/profile'
+    ASSISTANT = '/assistant',
+    USER_PROFILE = '/profile'
 }

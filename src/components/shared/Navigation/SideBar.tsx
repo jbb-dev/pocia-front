@@ -28,6 +28,11 @@ const menuItems: IMenuItem[] = [
         icon: <ConversationIcon width={ICON_WIDTH}/>
     },
     {
+        title: "Profile",
+        path: ERoutes.LOGIN,
+        icon: <LogoutIcon width={ICON_WIDTH}/>
+    },
+    {
         title: "Sign Out",
         path: ERoutes.LOGIN,
         icon: <LogoutIcon width={ICON_WIDTH}/>

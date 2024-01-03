@@ -16,7 +16,7 @@ const AssistantCard: React.FC<Props> = (props: Props) => {
 
     const moveToProfile = () => {
         assistant.setTempAssistant(props.data);
-        navigate(ERoutes.PROFILE);
+        navigate(ERoutes.ASSISTANT);
     };
 
     return (

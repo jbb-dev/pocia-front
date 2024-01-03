@@ -41,8 +41,8 @@ const Router: React.FC = observer(() => {
                     {/* PRIVATE ROUTES */}
                     <Route element={<PrivateRoutes />} >
                         <Route path={ERoutes.TEAM} element={<Team />} />
+                        <Route path={ERoutes.ASSISTANT} element={<Profile />} />
                         <Route path={ERoutes.CONVERSATION} element={<Conversation />} />
-                        <Route path={ERoutes.PROFILE} element={<Profile />} />
                     </Route>
                 </Routes>
             </Provider>

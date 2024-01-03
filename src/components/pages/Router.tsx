@@ -4,10 +4,11 @@ import { DataStoreContext } from '../../store/rootStore';
 import { Provider, observer } from 'mobx-react';
 import { ERoutes } from '../shared/Navigation/ERoutes';
 import Team from './Team';
-import Profile from '../Assistant/Profile';
 import Login from './Login';
 import SideBar from '../shared/Navigation/SideBar';
 import Conversation from '../Conversation/Conversation';
+import AssistantDetails from '../Assistant/Profile';
+import Profile from './Profile';
 
 const PrivateRoutes: React.FC = observer(() => {
 
@@ -41,8 +42,9 @@ const Router: React.FC = observer(() => {
                     {/* PRIVATE ROUTES */}
                     <Route element={<PrivateRoutes />} >
                         <Route path={ERoutes.TEAM} element={<Team />} />
-                        <Route path={ERoutes.ASSISTANT} element={<Profile />} />
+                        <Route path={ERoutes.ASSISTANT} element={<AssistantDetails />} />
                         <Route path={ERoutes.CONVERSATION} element={<Conversation />} />
+                        <Route path={ERoutes.USER_PROFILE} element={<Profile />} />
                     </Route>
                 </Routes>
             </Provider>

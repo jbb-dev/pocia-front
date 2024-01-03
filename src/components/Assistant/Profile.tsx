@@ -5,7 +5,7 @@ import BackButton from "../shared/Navigation/BackButton";
 import { useNavigate } from "react-router-dom";
 import { ERoutes } from "../shared/Navigation/ERoutes";
 
-const Profile: React.FC = () => {
+const AssistantDetails: React.FC = () => {
 
   const { assistant, assistant: { tempAssistant } } = React.useContext(DataStoreContext);
   let navigate = useNavigate();
@@ -50,4 +50,4 @@ const Profile: React.FC = () => {
   );
 };
 
-export default Profile;
+export default AssistantDetails;

@@ -36,7 +36,7 @@ const AssistantDetails: React.FC = () => {
             </p>
             <div className="mb-8 mt-8 h-px w-full bg-black"></div>
             <Button
-              label="Select me as your assistant !"
+              label={`Select ${tempAssistant?.name} as your assistant`}
               type="button"
               action={selectProfile}
             />

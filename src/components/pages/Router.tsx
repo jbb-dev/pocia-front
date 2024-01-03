@@ -7,7 +7,7 @@ import Team from './Team';
 import Login from './Login';
 import SideBar from '../shared/Navigation/SideBar';
 import Conversation from '../Conversation/Conversation';
-import AssistantDetails from '../Assistant/Profile';
+import AssistantDetails from '../Assistant/AssistantDetails';
 import Profile from './Profile';
 
 const PrivateRoutes: React.FC = observer(() => {

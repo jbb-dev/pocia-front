@@ -20,6 +20,7 @@ const Message: React.FC<Props> = observer((props: Props) => {
     const { user, assistant } = React.useContext(DataStoreContext);
 
     const isMessageFromUser: boolean = props.data?.senderRole === EWriterRole.USER;
+    const avatar: string = isMessageFromUser ? user.getUserAvatar() : assistant.getAssistantAvatar();
 
     const backgroundColor = isMessageFromUser ? "bg-blue-300" : "bg-gray-300 ";
 
@@ -27,7 +28,7 @@ const Message: React.FC<Props> = observer((props: Props) => {
         <div className="flex mb-2">
             <div className='flex-shrink-0 mr-2' style={{ width: '40px', height: '40px' }}>
                 <img
-                    src={isMessageFromUser ? user.getUserAvatar() : assistant.selectedAssistant?.avatar}
+                    src={avatar}
                     alt="avatar"
                     className="h-10 rounded-full"
                     style={{ objectFit: 'cover' }}

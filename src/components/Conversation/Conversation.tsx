@@ -38,7 +38,7 @@ const Conversation: React.FC = observer(() => {
     }, [conversation.currentConversation?.length]);
 
     return (
-        <form className="container mx-auto mt-8" onSubmit={createNewMessage}>
+        <form className="container mx-auto mt-8 px-5" onSubmit={createNewMessage}>
             <div
                 ref={messageContainerRef}
                 className="overflow-y-auto max-h-[69vh] px-4"

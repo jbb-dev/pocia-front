@@ -45,7 +45,6 @@ const SideBar = observer(() => {
     const [isSidebarOpen, setIsSidebarOpen] = React.useState<boolean>(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = React.useState<boolean>(false);
 
-
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
     const toggleUserMenu = () => setIsUserMenuOpen(!isUserMenuOpen);
 
@@ -60,7 +59,7 @@ const SideBar = observer(() => {
 
     const signout = () => {
         navigate(ERoutes.LOGIN);
-    }
+    };
 
     const isActive = (item: IMenuItem):boolean => {
         if (item.path === location.pathname || location.pathname.includes(item.path)) 

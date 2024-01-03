@@ -2,6 +2,7 @@ import { types, flow, cast } from "mobx-state-tree";
 import { api } from './../api/api';
 import { StoreAlert } from './alertStore';
 import { EToastStatus } from "../components/shared/Toast";
+import defaultAssistantAvatar from './../assets/icons/defaultAssistant.png';
 
 export interface IAssistant {
     name: string;
@@ -33,4 +34,8 @@ export const AssistantStore = types
     },
 
 }))
-;
+.views(self => ({
+    getAssistantAvatar() {
+        return self.selectedAssistant?.avatar != null ? self.selectedAssistant.avatar : defaultAssistantAvatar;
+    },
+}));

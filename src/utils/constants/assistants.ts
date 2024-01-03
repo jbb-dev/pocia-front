@@ -23,7 +23,7 @@ export const FIXED_ASSISTANTS_LIST : IAssistant[] = [
         name: "Marie Dupont",
         job: "Legal Director",
         biography: `Marie Dupont, the illustrious Legal Director, was born in 1985. Marie's passion for the law ignited during her formative years, and her journey to becoming a brilliant legal director has been nothing short of remarkable. Graduating with top honors from a prestigious law school, she quickly ascended the ranks, leaving a trail of victorious cases and satisfied clients in her wake. Marie's ability to navigate complex legal landscapes earned her the moniker "Legal Luminary." She's a sought-after speaker at legal conferences, captivating audiences with her sharp legal acumen. Beyond her professional success, Marie is known for her pro bono work, championing justice and equality. Marie Dupont, a true legal visionary.`,
-        avatar: "https://img.freepik.com/photos-gratuite/enseignante-pile-livres_23-2148635346.jpg?w=2000&t=st=1698610364~exp=1698610964~hmac=5f5e94997a1eca233775f973b081126635c1330e2229cde4c5209163c033b6a2",
+        avatar: "https://www.reconversionprofessionnelle.org/wp-content/uploads/2023/01/juriste-en-entreprise.jpg",
     },
     {
         name: "John Doe",

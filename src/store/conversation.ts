@@ -38,14 +38,6 @@ export const ConversationStore = types
         };
     }),
 
-    saveUserMessage : function () {
-        console.log('save user message')
-        let conversation: IMessage[] | null = self.currentConversation != null ? [...self.currentConversation] : [];
-        conversation.push(self.message as IMessage);
-
-        self.currentConversation = cast(conversation);        
-    },
-
     sendMessage : flow (function* () {
         console.log('send message')
         let conversation: IMessage[] | null = self.currentConversation != null ? [...self.currentConversation] : [];
@@ -58,8 +50,11 @@ export const ConversationStore = types
         } catch (error: any) {
                 const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
                 StoreAlert.alert.setAlert(EToastStatus.FAIL, message, error.response?.data?.errors);
+                conversation.push(self.message as IMessage); // Only for testing purpose : if backend not connected, allows to get user messages displayed
+                self.currentConversation = cast(conversation); // Only for testing purpose : if backend not connected, allows to get user messages displayed 
         };
-        self.currentConversation = cast(conversation);        
+        self.message = null; // clear message
+        self.currentConversation = cast(conversation);
     }),
 
 }))

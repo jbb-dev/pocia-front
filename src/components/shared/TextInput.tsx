@@ -1,23 +1,26 @@
 import React from 'react';
 
 interface Props {
-  label: string;
+  imgSrc: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  name: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type: 'email' | 'password' | 'text';
+  required: boolean;
 }
 
 const TextInput: React.FC<Props> = (props: Props) => {
   return (
-    <div className="mb-4">
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="input">
-        {props.label}
-      </label>
+    <div className="mb-4 relative">
+      <img alt="" src={props.imgSrc} className="absolute left-[5%] top-[26%] inline-block" />
       <input
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="input"
-        type="text"
+        className="mb-4 block h-9 w-full rounded-md border border-solid border-black px-3 py-6 pl-14 text-sm text-[#333333]"
+        id={props.name}
+        name={props.name}
+        type={props.type}
         value={props.value}
         onChange={props.onChange}
+        required={props.required}
       />
     </div>  
   );

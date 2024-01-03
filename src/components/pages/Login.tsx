@@ -3,22 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import { ERoutes } from '../shared/Navigation/ERoutes';
 import { DataStoreContext } from '../../store/rootStore';
 import Logo from './../../assets/logo/logo512.png';
+import TextInput from '../shared/TextInput';
+import Button from '../shared/Button';
 
 type Props = {}
 
 const RegisterForm: React.FC = () => {
 
-    const { user } = React.useContext(DataStoreContext);
-
-    let navigate = useNavigate();
-
-    const login = () => {
-        user.setIsAuth(true);
-        navigate(ERoutes.TEAM);
+    const subscribe = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log('subscribe')
     };
 
     return (
-        <form name="wf-form-password" onSubmit={login}>
+        <form name="register" onSubmit={subscribe}>
             <div className="relative">
                 <img alt="" src="https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a9455fae6cf89_EnvelopeSimple.svg" className="absolute left-[5%] top-[26%] inline-block" />
                 <input type="email" className="mb-4 block h-9 w-full rounded-md border border-solid border-black px-3 py-6 pl-14 text-sm text-[#333333]" placeholder="Email Address" required />
@@ -36,9 +34,69 @@ const RegisterForm: React.FC = () => {
             <input type="submit" value="SIGN UP" className="inline-block w-full cursor-pointer items-center bg-black px-6 py-3 text-center font-semibold text-white" />
         </form>
     )
-}
+};
+    
+
+const LoginForm: React.FC = () => {
+
+    const { user } = React.useContext(DataStoreContext);
+
+    const [credentials, setCredentials] = React.useState({
+        email: "",
+        password: ""
+    });
+
+    const handleChangeCredentials = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { value, name } = e.target;
+        setCredentials({ ...credentials, [name] : value});
+    };
+
+    let navigate = useNavigate();
+
+    const login = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        user.setIsAuth(true);
+        navigate(ERoutes.TEAM);
+    };
+
+    return (
+        <form name="login" onSubmit={login}>
+            <TextInput
+                name='email' 
+                type='email'
+                value={credentials.email}
+                onChange={handleChangeCredentials}    
+                imgSrc={"https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a9455fae6cf89_EnvelopeSimple.svg"}
+                required       
+            />
+            <TextInput
+                name='password' 
+                type='password'
+                value={credentials.password}
+                onChange={handleChangeCredentials}    
+                imgSrc={"https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a946794e6cf8a_Lock-2.svg"}
+                required       
+            />
+            <Button 
+                type='submit'
+                label='Login'
+                action={() => console.log('button')}
+            />
+            
+                        {/* <input type="submit" value="LOGIN" className="inline-block w-full cursor-pointer items-center bg-black px-6 py-3 text-center font-semibold text-white" /> */}
+        </form>
+    )
+};
+
+
 
 const Login: React.FC = (props: Props) => {
+
+    const [hasAccount, setHasAccount] = React.useState<boolean>(false);
+
+    const toggleAccount = () => setHasAccount(!hasAccount);
+
+    const title: string = hasAccount ? 'Welcome back' : 'Increase your business by hiring chat assistants';
     
     return (
 
@@ -60,17 +118,28 @@ const Login: React.FC = (props: Props) => {
                             <p>The interface also allows you to use a virtual assistant profile in order to obtain more precise responses depending on the selected assistant.</p>
                         </div>
                         <p className="text-sm font-bold sm:text-base">Jean-Baptiste Bouillat</p>
-                        <p className="text-sm sm:text-sm">Développeur full stack JS / JS Full stack developper</p>
+                        <p className="text-sm sm:text-sm">Développeur full stack JS / JS full stack developper</p>
                     </div>
                 </div>
                 <div className="flex items-center justify-center px-5 py-16 md:px-10 md:py-24 lg:py-32">
                     <div className="max-w-md text-center">
                         <img src={Logo} className="h-32 mb-8 rounded-full mx-auto" alt="Logo" />
-                        <h2 className="mb-8 text-3xl font-bold md:mb-12 md:text-5xl lg:mb-16">Start your 14-day free trial</h2>
+                        <h2 className="mb-8 text-3xl font-bold md:mb-12 md:text-5xl lg:mb-16">{title}</h2>
                         <div className="mx-auto mb-4 max-w-[400px] pb-4">
-                            <RegisterForm />
+                            {hasAccount ? 
+                                    <LoginForm />
+                                :    
+                                    <RegisterForm />
+                            }
                         </div>
-                        <p className="text-sm text-[#636262] sm:text-sm">Already have an account? <a href="#" className="font-bold text-[#0b0b1f]">Login now</a>
+                        <p className="text-sm text-[#636262] sm:text-sm">
+                            Already have an account? 
+                            <span 
+                                onClick={toggleAccount}
+                                className="font-bold text-[#0b0b1f] cursor-pointer ml-2"
+                            >
+                                Login now
+                            </span>
                         </p>
                     </div>
                 </div>

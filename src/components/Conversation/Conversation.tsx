@@ -41,7 +41,7 @@ const Conversation: React.FC = observer(() => {
         <form className="container mx-auto mt-8" onSubmit={createNewMessage}>
             <div
                 ref={messageContainerRef}
-                className="overflow-y-auto max-h-[80vh] px-4"
+                className="overflow-y-auto max-h-[69vh] px-4"
             >
                 {conversation.currentConversation?.map((mess, index) => 
                     <Message data={mess} key={index} />

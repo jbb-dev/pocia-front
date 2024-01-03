@@ -11,7 +11,7 @@ interface Props {
 
 const TextInput: React.FC<Props> = (props: Props) => {
   return (
-    <div className="mb-4 relative">
+    <div className="w-80 mb-4 relative">
       <img alt="" src={props.imgSrc} className="absolute left-[5%] top-[26%] inline-block" />
       <input
         className="mb-4 block h-9 w-full rounded-md border border-solid border-black px-3 py-6 pl-14 text-sm text-[#333333]"

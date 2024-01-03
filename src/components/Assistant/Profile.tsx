@@ -35,14 +35,6 @@ const Profile: React.FC = () => {
               {tempAssistant?.biography}
             </p>
             <div className="mb-8 mt-8 h-px w-full bg-black"></div>
-            <div className="mb-6 flex flex-col gap-2 text-sm text-[#808080] sm:text-base lg:mb-8">
-              <p>
-                <strong>2020: </strong>Site of the year in Awwwards.com
-              </p>
-              <p>
-                <strong>2020: </strong>Site of the year in Awwwards.com
-              </p>
-            </div>
             <Button
               label="Select me as your assistant !"
               type="button"

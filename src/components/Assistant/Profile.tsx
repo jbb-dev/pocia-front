@@ -2,12 +2,18 @@ import React from "react";
 import Button from "../shared/Button";
 import { DataStoreContext } from "../../store/rootStore";
 import BackButton from "../shared/Navigation/BackButton";
+import { useNavigate } from "react-router-dom";
+import { ERoutes } from "../shared/Navigation/ERoutes";
 
 const Profile: React.FC = () => {
 
-  const { assistant: { tempAssistant } } = React.useContext(DataStoreContext);
+  const { assistant, assistant: { tempAssistant } } = React.useContext(DataStoreContext);
+  let navigate = useNavigate();
 
-  const selectProfile = () => console.log('select profile')
+  const selectProfile = () => {
+    assistant.setSelectedAssistant(tempAssistant);
+    navigate(ERoutes.CONVERSATION);
+  };
 
   return (
     <section>
@@ -16,7 +22,7 @@ const Profile: React.FC = () => {
         <div className="grid gap-12 sm:gap-20 lg:grid-cols-2">
           <div className="flex flex-col items-start gap-2">
             <div className="flex items-center rounded-md bg-[#c4c4c4] px-3 py-1">
-              <div className="mr-1 h-2 w-2 rounded-full bg-black"></div>
+              <div className="mr-1 h-2 w-2 rounded-full bg-[#009600]"></div>
               <p className="text-sm">Available for work</p>
             </div>
             <p className="text-sm text-[#808080] sm:text-xl">

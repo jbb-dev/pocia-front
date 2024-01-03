@@ -5,7 +5,8 @@ import {ReactComponent as LogoutIcon} from './../../../assets/sidebar/logout.svg
 import {ReactComponent as TeamIcon} from './../../../assets/sidebar/team.svg';
 import Logo from './../../../assets/logo/logo192.png';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { HEADER_HEIGHT } from './Header';
+import { observer } from 'mobx-react';
+import { DataStoreContext } from '../../../store/rootStore';
 
 const ICON_WIDTH = '1.5rem';
 
@@ -17,23 +18,25 @@ interface IMenuItem {
 
 const menuItems: IMenuItem[] = [
     {
-        title: "Équipe",
+        title: "Team",
         path: ERoutes.TEAM,
         icon: <TeamIcon width={ICON_WIDTH}/>
     },
     {
-        title: "Discussion",
+        title: "Chat",
         path: ERoutes.CONVERSATION,
         icon: <ConversationIcon width={ICON_WIDTH}/>
     },
     {
-        title: "Se déconnecter",
+        title: "Sign Out",
         path: ERoutes.LOGIN,
         icon: <LogoutIcon width={ICON_WIDTH}/>
     },
 ] 
 
-const SideBar = () => {
+const SideBar = observer(() => {
+
+    const { user } = React.useContext(DataStoreContext);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -83,16 +86,16 @@ const SideBar = () => {
                             <div className="flex items-center ml-3">
                                 <button onClick={toggleUserMenu} type="button" className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                                     <span className="sr-only">Open user menu</span>
-                                    <img className="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo" />
+                                    <img className="w-8 h-8 rounded-full" src={user.getUserAvatar()} alt="user photo" />
                                 </button>
                                 {isUserMenuOpen && (
                                     <div className="z-50 absolute top-14 right-0 mt-2 w-48 py-1 bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
                                         <div className="px-4 py-3" role="none">
-                                            <p className="text-sm text-gray-900 dark:text-white" role="none">
+                                            {/* <p className="text-sm text-gray-900 dark:text-white" role="none">
                                                 Neil Sims
-                                            </p>
+                                            </p> */}
                                             <p className="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                                neil.sims@flowbite.com
+                                                {user.user?.email}
                                             </p>
                                         </div>
                                         <ul className="py-1" role="none">
@@ -132,6 +135,6 @@ const SideBar = () => {
             </aside>
         </>
     );
-};
+});
 
 export default SideBar;

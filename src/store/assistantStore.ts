@@ -24,7 +24,7 @@ export const AssistantStore = types
         self.list = assistants;
     },
 
-    setSelectedAssistant(assistant: IAssistant) {
+    setSelectedAssistant(assistant: IAssistant | null) {
         self.selectedAssistant = assistant;
     },
 

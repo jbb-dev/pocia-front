@@ -3,6 +3,7 @@ import { ERoutes } from './ERoutes';
 import {ReactComponent as ConversationIcon} from './../../../assets/sidebar/speak.svg';
 import {ReactComponent as LogoutIcon} from './../../../assets/sidebar/logout.svg';
 import {ReactComponent as TeamIcon} from './../../../assets/sidebar/team.svg';
+import {ReactComponent as ProfileIcon} from './../../../assets/sidebar/profile.svg';
 import Logo from './../../../assets/logo/logo192.png';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react';
@@ -29,8 +30,8 @@ const menuItems: IMenuItem[] = [
     },
     {
         title: "Profile",
-        path: ERoutes.LOGIN,
-        icon: <LogoutIcon width={ICON_WIDTH}/>
+        path: ERoutes.USER_PROFILE,
+        icon: <ProfileIcon width={ICON_WIDTH}/>
     },
     {
         title: "Sign Out",

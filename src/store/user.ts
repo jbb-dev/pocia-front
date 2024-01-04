@@ -63,21 +63,6 @@ export const UserStore = types
         };
     }),
 
-    signout : flow (function* () {
-        try {
-            const response = yield api.post(`${REACT_APP_API_URL}/api/user/logout`);
-            if (response.status === 200)
-            {
-                StoreAlert.alert.setAlert(EToastStatus.SUCCESS, "See you soon !", null);
-                self.isAuth = false;
-                clearTokens();
-            };
-        } catch (error: any) {
-            const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
-            StoreAlert.alert.setAlert(EToastStatus.FAIL, message, error.response?.data?.errors);
-        };
-    }),
-
     updateProfile : flow (function* (newProfile: IUser) {
         try {
             const response = yield api.put(`${REACT_APP_API_URL}/api/user/profile`, newProfile);
@@ -94,10 +79,16 @@ export const UserStore = types
                 StoreAlert.alert.setAlert(EToastStatus.FAIL, message, error.response?.data?.errors);
         };
     }),
+
+    signout() {
+        clearTokens();
+        self.isAuth = false;
+        StoreAlert.alert.setAlert(EToastStatus.SUCCESS, "See you soon !", null);
+    },
 }))
 .views(self => ({
     getUserAvatar() {
-        return self.user?.avatar != null ? self.user.avatar : defaultUser;
+        return self.user?.avatar != null && self.user.avatar.length > 0 ? self.user.avatar : defaultUser;
     },
 }))
 ;

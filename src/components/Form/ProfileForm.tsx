@@ -21,7 +21,7 @@ const ProfileForm : React.FC = () => {
 
     const update = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!passWordIsValid)
+        if (credentials.password.length > 0 && !passWordIsValid)
         {
             return alert.setAlert(EToastStatus.FAIL, "Your password must be 8 characters long, an uppercase letter, a lowercase letter, a number or a special character", null);
         }
@@ -29,8 +29,7 @@ const ProfileForm : React.FC = () => {
         {
             return alert.setAlert(EToastStatus.FAIL, "Password and Confirmation Password need to be the same", null);
         }
-        console.log('update')
-        // user.updateProfile(credentials);
+        user.updateProfile(credentials);
     };
 
     const passWordIsValid: boolean = credentials.password.match(passwordRegex) != null ? true : false;
@@ -71,7 +70,7 @@ const ProfileForm : React.FC = () => {
                 value={credentials.password}
                 onChange={handleChangeCredentials}    
                 imgSrc={passwordIcon}
-                required       
+                required={false}      
             />
             <TextInput
                 name='confirmPassword' 
@@ -80,7 +79,7 @@ const ProfileForm : React.FC = () => {
                 value={confirmPassword}
                 onChange={e => setConfirmPassword(e.target.value)}    
                 imgSrc={passwordIcon}
-                required       
+                required={false}      
             />
             <Button 
                 type='submit'

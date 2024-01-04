@@ -2,14 +2,27 @@ import React from 'react';
 import Logo from './../../assets/logo/logo512.png';
 import RegisterForm from '../Form/RegisterForm';
 import LoginForm from '../Form/LoginForm';
+import { observer } from 'mobx-react';
+import { DataStoreContext } from '../../store/rootStore';
+import { useNavigate } from 'react-router-dom';
+import { ERoutes } from '../shared/Navigation/ERoutes';
 
-const Login: React.FC = () => {
+const Login: React.FC = observer(() => {
+
+    const { user } = React.useContext(DataStoreContext);
+    let navigate = useNavigate();
 
     const [hasAccount, setHasAccount] = React.useState<boolean>(false);
-
     const toggleAccount = () => setHasAccount(!hasAccount);
 
     const title: string = hasAccount ? 'Welcome back' : 'Increase your business by hiring chat assistants';
+
+    React.useEffect(() => {
+        if (user.isAuth)
+        {
+            navigate(ERoutes.TEAM);
+        }
+    }, [user.isAuth]);
     
     return (
 
@@ -59,6 +72,6 @@ const Login: React.FC = () => {
             </div>
         </section>    
 )   ;
-};
+});
 
 export default Login;

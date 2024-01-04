@@ -58,7 +58,8 @@ const SideBar = observer(() => {
     };
 
     const signout = () => {
-        navigate(ERoutes.LOGIN);
+        user.signout()
+        // navigate(ERoutes.LOGIN);
     };
 
     const isActive = (item: IMenuItem):boolean => {

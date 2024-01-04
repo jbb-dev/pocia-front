@@ -1,6 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ERoutes } from '../shared/Navigation/ERoutes';
 import { DataStoreContext } from '../../store/rootStore';
 import TextInput from '../shared/TextInput';
 import Button from '../shared/Button';
@@ -16,16 +14,13 @@ const LoginForm: React.FC = () => {
 
     const { credentials, handleChangeCredentials } = useCredentials();
 
-    let navigate = useNavigate();
-
     const passWordIsValid: boolean = credentials.password.match(passwordRegex) != null ? true : false;
 
     const login = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (passWordIsValid)
         {
-            user.setIsAuth(true);
-            navigate(ERoutes.TEAM);    
+            user.login(credentials.email, credentials.password);
         }
         alert.setAlert(EToastStatus.FAIL, "Your password must be 8 characters long, an uppercase letter, a lowercase letter, a number or a special character", null);
     };

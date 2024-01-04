@@ -15,7 +15,9 @@ const Login: React.FC = observer(() => {
     const [hasAccount, setHasAccount] = React.useState<boolean>(false);
     const toggleAccount = () => setHasAccount(!hasAccount);
 
-    const title: string = hasAccount ? 'Welcome back' : 'Increase your business by hiring chat assistants';
+    const title: string = hasAccount ? 'Welcome back.' : 'Increase your skills with your personnal chat assistants.';
+    const switchFormText: string = hasAccount ? 'No account yet ?' : 'Already have an account ?';
+    const switchFormTextAction: string = hasAccount ? 'Sign up now' : 'Login now';
 
     React.useEffect(() => {
         if (user.isAuth)
@@ -59,12 +61,12 @@ const Login: React.FC = observer(() => {
                             }
                         </div>
                         <p className="text-sm text-[#636262] sm:text-sm">
-                            Already have an account? 
+                            {switchFormText}
                             <span 
                                 onClick={toggleAccount}
                                 className="font-bold text-[#0b0b1f] cursor-pointer ml-2"
                             >
-                                Login now
+                                {switchFormTextAction}
                             </span>
                         </p>
                     </div>

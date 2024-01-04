@@ -7,14 +7,17 @@ import emailIcon from './../../assets/forms/mail.svg';
 import passwordIcon from './../../assets/forms/password.svg';
 import firstnameIcon from './../../assets/forms/firstname.svg';
 import lastnameIcon from './../../assets/forms/lastname.svg';
+import { DataStoreContext } from '../../store/rootStore';
 
 const RegisterForm: React.FC = () => {
 
     const { credentials, handleChangeCredentials } = useCredentials();
+    const { user } = React.useContext(DataStoreContext);
 
     const subscribe = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log('subscribe')
+        user.subscribe(credentials);
     };
 
     return (

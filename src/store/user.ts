@@ -25,6 +25,24 @@ export const UserStore = types
         self.isAuth = authStatus;
     },
 
+    subscribe : flow (function* (userProfile: IUser) {
+        let success = false;
+        try {
+            const response = yield api.post(`${REACT_APP_API_URL}/api/user/profile`, userProfile);
+            console.log('response subscribe ===> ', response)
+            if (response.status === 200) 
+            {
+                StoreAlert.alert.setAlert(EToastStatus.SUCCESS, "Your account has been successfully created, welcome on board", null);
+                self.user = response.data;
+                self.isAuth = true;
+            };
+        } catch (error: any) {
+                const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
+                StoreAlert.alert.setAlert(EToastStatus.FAIL, message, error.response?.data?.errors);
+        };
+        return success;
+    }),
+
     login : flow (function* (email: string, password: string) {
         try {
             const response = yield api.post(`${REACT_APP_API_URL}/api/user/login`, {
@@ -62,7 +80,7 @@ export const UserStore = types
 
     updateProfile : flow (function* (newProfile: IUser) {
         try {
-            const response = yield api.post(`${REACT_APP_API_URL}/api/user`, newProfile);
+            const response = yield api.put(`${REACT_APP_API_URL}/api/user/profile`, newProfile);
             console.log('response updateProfile ===> ', response)
             if (response.status === 200 && response.data != null) 
             {

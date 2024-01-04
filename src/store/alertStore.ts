@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { types, Instance, cast } from 'mobx-state-tree';
-import { EToastStatus } from '../components/shared/Toast';
+import { EToastStatus } from '../components/shared/ToastAlert';
 
 const AlertStore = types
     .model({

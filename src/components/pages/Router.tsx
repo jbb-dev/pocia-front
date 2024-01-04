@@ -9,6 +9,8 @@ import SideBar from '../shared/Navigation/SideBar';
 import Conversation from '../Conversation/Conversation';
 import AssistantDetails from '../Assistant/AssistantDetails';
 import Profile from './Profile';
+import ToastAlert, { EToastStatus } from '../shared/ToastAlert';
+import { AlertStoreContext } from '../../store/alertStore';
 
 const PrivateRoutes: React.FC = observer(() => {
 
@@ -29,13 +31,15 @@ const PrivateRoutes: React.FC = observer(() => {
 
 const Router: React.FC = observer(() => {
 
-    const { conversation, user: {isAuth} } = React.useContext(DataStoreContext)
+    const { alert } = React.useContext(AlertStoreContext);
+
+    const showAlert: boolean = alert.status != null && alert.status !== EToastStatus.NONE;
 
     return (
         <BrowserRouter>
             <Provider value={DataStoreContext}>
+                {showAlert && <ToastAlert />}
                 <Routes>
-
                     {/* PUBLIC ROUTES */}
                     <Route path={ERoutes.LOGIN} element={<Login />} />
 

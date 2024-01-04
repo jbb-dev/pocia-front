@@ -1,7 +1,7 @@
 import { types, flow, cast } from "mobx-state-tree";
 import { api } from './../api/api';
 import { StoreAlert } from './alertStore';
-import { EToastStatus } from "../components/shared/Toast";
+import { EToastStatus } from "../components/shared/ToastAlert";
 import { EWriterRole } from "../components/Conversation/Message";
 
 export interface IMessage {

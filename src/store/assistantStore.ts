@@ -1,7 +1,7 @@
 import { types, flow, cast } from "mobx-state-tree";
 import { api } from './../api/api';
 import { StoreAlert } from './alertStore';
-import { EToastStatus } from "../components/shared/Toast";
+import { EToastStatus } from "../components/shared/ToastAlert";
 import defaultAssistantAvatar from './../assets/icons/defaultAssistant.png';
 
 export interface IAssistant {

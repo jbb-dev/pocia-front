@@ -7,7 +7,7 @@ import axios, {
 import { Store } from '../store/rootStore';
 import { StoreAlert } from '../store/alertStore';
 import { clearTokens } from "./api";
-import { EToastStatus } from "../components/shared/Toast";
+import { EToastStatus } from "../components/shared/ToastAlert";
 
 const { REACT_APP_API_URL } = process.env;
 export interface IToken {
@@ -49,6 +49,21 @@ const onResponse = (response: AxiosResponse): AxiosResponse => {
 const onResponseError = async (error: AxiosError) => {
     console.log('onResponseError, error = ', error)
     const config = error.config as any;
+        // Network Error means backend is crashed or there is another network issue
+        if (error.message === "Network Error")
+        {
+            // Prepare object error response structure to be used to display error message in app
+            if (!error.response) {
+                error.response = { data: {}, status: 0, statusText: '', headers: {}, config: error.config, request: {} };
+            }
+            if (!error.response.data) {
+                error.response.data = {};
+            }
+    
+            // Prepare message to be displayed in error 
+            error.response.data.message = "Impossible d'accéder au serveur actuellement. Veuillez vérifier votre connexion Internet et réessayer dans quelques instants.";
+            return Promise.reject(error);
+        };
         // Access Token was expired
         if ( error.response?.status === 401 && error.response?.data?.message === "Le token d'identification n'est plus valide" && !config._retry) 
         {

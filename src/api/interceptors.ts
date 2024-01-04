@@ -37,6 +37,7 @@ const onRequest = (config: AxiosRequestConfig): AxiosRequestConfig => {
 
 const onRequestError = (error: AxiosError): Promise<AxiosError> => {
     console.log('onRequestError')
+    
     StoreAlert.alert.setAlert(EToastStatus.FAIL, error.response?.data?.message, null);
     return Promise.reject(error);
 };

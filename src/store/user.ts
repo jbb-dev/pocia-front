@@ -28,6 +28,7 @@ export const UserStore = types
                 email,
                 password
             });
+            console.log('response ===> ', response)
             if (response.status === 200 && response.data != null) 
             {
                 const tokens = JSON.stringify(response.data);

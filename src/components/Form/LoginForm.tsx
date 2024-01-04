@@ -5,19 +5,29 @@ import { DataStoreContext } from '../../store/rootStore';
 import TextInput from '../shared/TextInput';
 import Button from '../shared/Button';
 import { useCredentials } from '../../utils/hooks/useCredentials';
+import { passwordRegex } from '../../utils/constants/regex';
+import { AlertStoreContext } from '../../store/alertStore';
+import { EToastStatus } from '../shared/ToastAlert';
 
 const LoginForm: React.FC = () => {
 
     const { user } = React.useContext(DataStoreContext);
+    const { alert } = React.useContext(AlertStoreContext);
 
     const { credentials, handleChangeCredentials } = useCredentials();
 
     let navigate = useNavigate();
 
+    const passWordIsValid: boolean = credentials.password.match(passwordRegex) != null ? true : false;
+
     const login = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        user.setIsAuth(true);
-        navigate(ERoutes.TEAM);
+        if (passWordIsValid)
+        {
+            user.setIsAuth(true);
+            navigate(ERoutes.TEAM);    
+        }
+        alert.setAlert(EToastStatus.FAIL, "Your password must be 8 characters long, an uppercase letter, a lowercase letter, a number or a special character", null);
     };
 
     return (

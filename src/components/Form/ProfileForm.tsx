@@ -10,14 +10,18 @@ import { DataStoreContext } from '../../store/rootStore';
 import { passwordRegex } from '../../utils/constants/regex';
 import { AlertStoreContext } from '../../store/alertStore';
 import { EToastStatus } from '../shared/ToastAlert';
+import { IUser } from '../../store/user';
 
 const ProfileForm : React.FC = () => {
 
-    const { credentials, handleChangeCredentials } = useCredentials();
-    const [confirmPassword, setConfirmPassword] = React.useState<string>("");
-
     const { user } = React.useContext(DataStoreContext);
     const { alert } = React.useContext(AlertStoreContext);
+
+    const currentProfile: IUser | null = user.user ?? null;
+
+    const { credentials, handleChangeCredentials } = useCredentials(currentProfile);
+    const [confirmPassword, setConfirmPassword] = React.useState<string>("");
+
 
     const update = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -40,7 +44,7 @@ const ProfileForm : React.FC = () => {
                 name='firstname' 
                 placeholder='Firstname'
                 type='text'
-                value={user.user?.firstname || ""}
+                value={credentials.firstname}
                 onChange={handleChangeCredentials}    
                 imgSrc={firstnameIcon}
                 required       
@@ -49,18 +53,9 @@ const ProfileForm : React.FC = () => {
                 name='lastname' 
                 placeholder='Lastname'
                 type='text'
-                value={user.user?.lastname || ""}
+                value={credentials.lastname}
                 onChange={handleChangeCredentials}    
                 imgSrc={lastnameIcon}
-                required       
-            />
-            <TextInput
-                name='email' 
-                placeholder='Email'
-                type='email'
-                value={user.user?.email || ""}
-                onChange={handleChangeCredentials}    
-                imgSrc={emailIcon}
                 required       
             />
             <TextInput

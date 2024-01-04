@@ -1,10 +1,14 @@
 import React from 'react';
+import { IUser } from '../../store/user';
 
 export const useCredentials = () => {
 
-    const [credentials, setCredentials] = React.useState({
+    const [credentials, setCredentials] = React.useState<IUser>({
         email: "",
-        password: ""
+        password: "",
+        firstname: "",
+        lastname: "",
+        avatar: ""
     });
 
     const handleChangeCredentials = (e: React.ChangeEvent<HTMLInputElement>) => {

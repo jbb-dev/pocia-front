@@ -3,6 +3,10 @@ import React from 'react';
 import TextInput from '../shared/TextInput';
 import Button from '../shared/Button';
 import { useCredentials } from '../../utils/hooks/useCredentials';
+import emailIcon from './../../assets/forms/mail.svg';
+import passwordIcon from './../../assets/forms/password.svg';
+import firstnameIcon from './../../assets/forms/firstname.svg';
+import lastnameIcon from './../../assets/forms/lastname.svg';
 
 const RegisterForm: React.FC = () => {
 
@@ -16,19 +20,39 @@ const RegisterForm: React.FC = () => {
     return (
         <form name="register" onSubmit={subscribe}>
             <TextInput
+                name='firstname' 
+                placeholder='Firstname'
+                type='text'
+                value={credentials.firstname}
+                onChange={handleChangeCredentials}    
+                imgSrc={firstnameIcon}
+                required       
+            />
+            <TextInput
+                name='lastname' 
+                placeholder='Lastname'
+                type='text'
+                value={credentials.lastname}
+                onChange={handleChangeCredentials}    
+                imgSrc={lastnameIcon}
+                required       
+            />
+            <TextInput
                 name='email' 
+                placeholder='Email'
                 type='email'
                 value={credentials.email}
                 onChange={handleChangeCredentials}    
-                imgSrc={"https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a9455fae6cf89_EnvelopeSimple.svg"}
+                imgSrc={emailIcon}
                 required       
             />
             <TextInput
                 name='password' 
+                placeholder='Password'
                 type='password'
-                value={credentials.password}
+                value={credentials.password || ""}
                 onChange={handleChangeCredentials}    
-                imgSrc={"https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a946794e6cf8a_Lock-2.svg"}
+                imgSrc={passwordIcon}
                 required       
             />
             <Button 

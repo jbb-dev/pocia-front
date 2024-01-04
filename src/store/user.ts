@@ -7,10 +7,11 @@ import defaultUser from './../assets/icons/defaultUser.png';
 const { REACT_APP_API_URL } = process.env;
 
 export interface IUser {
-    email: string | null,
+    email: string,
+    password: string,
     firstname: string,
     lastname: string,
-    avatar: string,
+    avatar?: string,
 };
 
 export const UserStore = types

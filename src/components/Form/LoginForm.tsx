@@ -6,6 +6,8 @@ import { useCredentials } from '../../utils/hooks/useCredentials';
 import { passwordRegex } from '../../utils/constants/regex';
 import { AlertStoreContext } from '../../store/alertStore';
 import { EToastStatus } from '../shared/ToastAlert';
+import emailIcon from './../../assets/forms/mail.svg';
+import passwordIcon from './../../assets/forms/password.svg';
 
 const LoginForm: React.FC = () => {
 
@@ -29,18 +31,20 @@ const LoginForm: React.FC = () => {
         <form name="login" onSubmit={login}>
             <TextInput
                 name='email' 
+                placeholder='Email'
                 type='email'
                 value={credentials.email}
                 onChange={handleChangeCredentials}    
-                imgSrc={"https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a9455fae6cf89_EnvelopeSimple.svg"}
+                imgSrc={emailIcon}
                 required       
             />
             <TextInput
                 name='password' 
+                placeholder='Password'
                 type='password'
                 value={credentials.password}
                 onChange={handleChangeCredentials}    
-                imgSrc={"https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a946794e6cf8a_Lock-2.svg"}
+                imgSrc={passwordIcon}
                 required       
             />
             <Button 

@@ -16,6 +16,7 @@ const ProfileForm : React.FC = () => {
         <form name="profile" onSubmit={update}>
             <TextInput
                 name='email' 
+                placeholder='Email'
                 type='email'
                 value={credentials.email}
                 onChange={handleChangeCredentials}    
@@ -23,7 +24,8 @@ const ProfileForm : React.FC = () => {
                 required       
             />
             <TextInput
-                name='password' 
+                name='password'
+                placeholder='Password' 
                 type='password'
                 value={credentials.password}
                 onChange={handleChangeCredentials}    

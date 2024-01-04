@@ -31,11 +31,12 @@ export const UserStore = types
                 email,
                 password
             });
-            console.log('response ===> ', response)
+            console.log('response login ===> ', response)
             if (response.status === 200 && response.data != null) 
             {
-                const tokens = JSON.stringify(response.data);
+                const tokens = JSON.stringify(response.data.token);
                 sessionStorage.setItem('tokens', tokens);
+                self.user = response.data.user;
                 self.isAuth = true;
             };
         } catch (error: any) {
@@ -49,7 +50,7 @@ export const UserStore = types
             const response = yield api.post(`${REACT_APP_API_URL}/api/user/logout`);
             if (response.status === 200)
             {
-                StoreAlert.alert.setAlert(EToastStatus.SUCCESS, "Merci et à bientôt !", null);
+                StoreAlert.alert.setAlert(EToastStatus.SUCCESS, "See you soon !", null);
                 self.isAuth = false;
                 clearTokens();
             };
@@ -57,7 +58,24 @@ export const UserStore = types
             const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
             StoreAlert.alert.setAlert(EToastStatus.FAIL, message, error.response?.data?.errors);
         };
-    })
+    }),
+
+    updateProfile : flow (function* (newProfile: IUser) {
+        try {
+            const response = yield api.post(`${REACT_APP_API_URL}/api/user`, newProfile);
+            console.log('response updateProfile ===> ', response)
+            if (response.status === 200 && response.data != null) 
+            {
+                const tokens = JSON.stringify(response.data.token);
+                sessionStorage.setItem('tokens', tokens);
+                self.user = response.data.user;
+                self.isAuth = true;
+            };
+        } catch (error: any) {
+                const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
+                StoreAlert.alert.setAlert(EToastStatus.FAIL, message, error.response?.data?.errors);
+        };
+    }),
 }))
 .views(self => ({
     getUserAvatar() {

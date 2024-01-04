@@ -20,11 +20,11 @@ const LoginForm: React.FC = () => {
 
     const login = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (passWordIsValid)
+        if (!passWordIsValid)
         {
-            user.login(credentials.email, credentials.password);
+            return alert.setAlert(EToastStatus.FAIL, "Your password must be 8 characters long, an uppercase letter, a lowercase letter, a number or a special character", null);
         }
-        alert.setAlert(EToastStatus.FAIL, "Your password must be 8 characters long, an uppercase letter, a lowercase letter, a number or a special character", null);
+        user.login(credentials.email, credentials.password);
     };
 
     return (

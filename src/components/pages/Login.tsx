@@ -47,7 +47,7 @@ const Login: React.FC = observer(() => {
                         <p className="text-sm sm:text-sm">Développeur full stack JS / JS full stack developper</p>
                     </div>
                 </div>
-                <div className="flex items-center justify-center px-5 py-16 md:px-10 md:py-24 lg:py-32">
+                <div className="flex items-center justify-center py-8 md:py-0 lg:py-0">
                     <div className="max-w-md text-center flex flex-col justify-center">
                         <img src={Logo} className="h-32 mb-8 rounded-full mx-auto" alt="Logo" />
                         <h2 className="mb-8 text-3xl font-bold md:mb-12 md:text-5xl lg:mb-16">{title}</h2>

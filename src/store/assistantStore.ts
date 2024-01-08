@@ -1,4 +1,4 @@
-import { types, flow, cast } from "mobx-state-tree";
+import { types, flow } from "mobx-state-tree";
 import { api } from './../api/api';
 import { StoreAlert } from './alertStore';
 import { EToastStatus } from "../components/shared/ToastAlert";
@@ -21,9 +21,18 @@ export const AssistantStore = types
 })
 .actions(self => ({
 
-    setList(assistants: IAssistant[]) {
-        self.list = assistants;
-    },
+    getAssistants : flow (function* () {
+        try {
+            const response = yield api.get(`${REACT_APP_API_URL}/api/assistant`);
+            if (response.status === 200)
+            {
+                self.list = response.data;
+            };
+        } catch (error: any) {
+                const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
+                StoreAlert.alert.setAlert(EToastStatus.FAIL, message, error.response?.data?.errors);
+        };
+    }),
 
     setSelectedAssistant(assistant: IAssistant | null) {
         self.selectedAssistant = assistant;

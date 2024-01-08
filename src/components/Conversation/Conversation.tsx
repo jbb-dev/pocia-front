@@ -17,15 +17,14 @@ const Conversation: React.FC = observer(() => {
 
     const createNewMessage = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // First save the question asked by the user
-        // conversation.saveUserMessage();
-        // Then send the message in order to wait for the assistant answer
         await conversation.sendMessage();
     };
 
     // Run fetch current conversation
     React.useEffect(() => {
+        const controller = new AbortController();
         conversation.getConversation();
+        return () => controller.abort();
     }, []);
 
     // Scroll to bottom

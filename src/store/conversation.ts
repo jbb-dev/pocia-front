@@ -25,7 +25,6 @@ export const ConversationStore = types
     },
 
     getConversation : flow (function* () {
-        console.log('get conversation')
         try {
             const response = yield api.get(`${REACT_APP_API_URL}/api/conversation`);
             if (response.status === 200)
@@ -39,7 +38,6 @@ export const ConversationStore = types
     }),
 
     sendMessage : flow (function* () {
-        console.log('send message')
         let conversation: IMessage[] | null = self.currentConversation != null ? [...self.currentConversation] : [];
         try {
             const response = yield api.post(`${REACT_APP_API_URL}/api/chat`, self.message);
@@ -50,8 +48,6 @@ export const ConversationStore = types
         } catch (error: any) {
                 const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
                 StoreAlert.alert.setAlert(EToastStatus.FAIL, message, error.response?.data?.errors);
-                conversation.push(self.message as IMessage); // Only for testing purpose : if backend not connected, allows to get user messages displayed
-                self.currentConversation = cast(conversation); // Only for testing purpose : if backend not connected, allows to get user messages displayed 
         };
         self.message = null; // clear message
         self.currentConversation = cast(conversation);

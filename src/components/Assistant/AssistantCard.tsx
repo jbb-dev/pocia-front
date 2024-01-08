@@ -22,7 +22,7 @@ const AssistantCard: React.FC<Props> = (props: Props) => {
     return (
         <div 
             onClick={moveToProfile}
-            className="flex w-[320px] md:w-full flex-col items-center gap-4 rounded-md border border-solid border-[#cdcdcd] pb-6 cursor-pointer"
+            className="flex w-[320px] md:w-full flex-col items-center gap-4 rounded-md border border-solid border-[#cdcdcd] pb-6 cursor-pointer hover:bg-slate-100"
         >
             <img src={props.data.avatar} alt="" className="mb-4 inline-block h-52 w-full object-cover" />
             <p className="font-bold">{props.data.name}</p>

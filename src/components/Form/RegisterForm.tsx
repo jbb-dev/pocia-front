@@ -9,15 +9,22 @@ import firstnameIcon from './../../assets/forms/firstname.svg';
 import lastnameIcon from './../../assets/forms/lastname.svg';
 import { DataStoreContext } from '../../store/rootStore';
 
-const RegisterForm: React.FC = () => {
+interface Props {
+    toggleForm: () => void;
+}
+
+const RegisterForm: React.FC<Props> = (props: Props) => {
 
     const { credentials, handleChangeCredentials } = useCredentials();
     const { user } = React.useContext(DataStoreContext);
 
-    const subscribe = (e: React.FormEvent<HTMLFormElement>) => {
+    const subscribe = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('subscribe')
-        user.subscribe(credentials);
+        const success: boolean = await user.subscribe(credentials);
+        if (success)
+        {
+            props.toggleForm();
+        }
     };
 
     return (

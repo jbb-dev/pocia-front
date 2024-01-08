@@ -15,7 +15,7 @@ const Login: React.FC = observer(() => {
     const [hasAccount, setHasAccount] = React.useState<boolean>(false);
     const toggleAccount = () => setHasAccount(!hasAccount);
 
-    const title: string = hasAccount ? 'Welcome back.' : 'Increase your skills with your personnal chat assistants.';
+    const title: string = 'Increase your skills with your personnal chat assistants.';
     const switchFormText: string = hasAccount ? 'No account yet ?' : 'Already have an account ?';
     const switchFormTextAction: string = hasAccount ? 'Sign up now' : 'Login now';
 
@@ -57,7 +57,7 @@ const Login: React.FC = observer(() => {
                             {hasAccount ? 
                                     <LoginForm />
                                 :    
-                                    <RegisterForm />
+                                    <RegisterForm toggleForm={toggleAccount} />
                             }
                         </div>
                         <p className="text-sm text-[#636262] sm:text-sm">

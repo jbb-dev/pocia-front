@@ -9,4 +9,4 @@ export const api = setupInterceptorsTo(
   })
 );
 
-export const clearTokens = () => sessionStorage.clear();
+export const clearToken = () => sessionStorage.clear();

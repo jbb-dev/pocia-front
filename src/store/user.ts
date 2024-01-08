@@ -1,5 +1,5 @@
 import { types, flow } from "mobx-state-tree";
-import { api, clearTokens } from './../api/api';
+import { api, clearToken } from './../api/api';
 import { StoreAlert } from './alertStore';
 import { EToastStatus } from "../components/shared/ToastAlert";
 import defaultUser from './../assets/icons/defaultUser.png';
@@ -29,12 +29,10 @@ export const UserStore = types
         let success = false;
         try {
             const response = yield api.post(`${REACT_APP_API_URL}/api/user/profile`, userProfile);
-            console.log('response subscribe ===> ', response)
             if (response.status === 200) 
             {
-                StoreAlert.alert.setAlert(EToastStatus.SUCCESS, "Your account has been successfully created, welcome on board", null);
-                self.user = response.data;
-                self.isAuth = true;
+                StoreAlert.alert.setAlert(EToastStatus.SUCCESS, "Your account has been successfully created, you can now login", null);
+                success = true;
             };
         } catch (error: any) {
                 const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
@@ -49,11 +47,10 @@ export const UserStore = types
                 email,
                 password
             });
-            console.log('response login ===> ', response)
             if (response.status === 200 && response.data != null) 
             {
-                const tokens = JSON.stringify(response.data.token);
-                sessionStorage.setItem('tokens', tokens);
+                const token = JSON.stringify(response.data.token);
+                sessionStorage.setItem('token', token);
                 self.user = response.data.user;
                 self.isAuth = true;
             };
@@ -65,14 +62,11 @@ export const UserStore = types
 
     updateProfile : flow (function* (newProfile: IUser) {
         try {
-            const response = yield api.put(`${REACT_APP_API_URL}/api/user/profile`, newProfile);
-            console.log('response updateProfile ===> ', response)
+            const response = yield api.put(`${REACT_APP_API_URL}/api/user/profile`, { firstname: newProfile.firstname, lastname: newProfile.lastname });
             if (response.status === 200 && response.data != null) 
             {
-                const tokens = JSON.stringify(response.data.token);
-                sessionStorage.setItem('tokens', tokens);
-                self.user = response.data.user;
-                self.isAuth = true;
+                StoreAlert.alert.setAlert(EToastStatus.SUCCESS, "Your profile has been successfully updated", null);
+                self.user = response.data;
             };
         } catch (error: any) {
                 const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
@@ -81,7 +75,7 @@ export const UserStore = types
     }),
 
     signout() {
-        clearTokens();
+        clearToken();
         self.isAuth = false;
         StoreAlert.alert.setAlert(EToastStatus.SUCCESS, "See you soon !", null);
     },

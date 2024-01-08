@@ -5,6 +5,7 @@ import { EToastStatus } from "../components/shared/ToastAlert";
 import defaultAssistantAvatar from './../assets/icons/defaultAssistant.png';
 
 export interface IAssistant {
+    _id: string;
     name: string;
     job: string;
     biography: string;
@@ -29,8 +30,8 @@ export const AssistantStore = types
                 self.list = response.data;
             };
         } catch (error: any) {
-                const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
-                StoreAlert.alert.setAlert(EToastStatus.FAIL, message, error.response?.data?.errors);
+            const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
+            StoreAlert.alert.setAlert(EToastStatus.FAIL, message, error.response?.data?.errors);
         };
     }),
 

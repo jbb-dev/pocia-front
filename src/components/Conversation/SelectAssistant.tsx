@@ -14,10 +14,10 @@ const SelectAssistant: React.FC = observer(() => {
     const assistantShortName = (assistantToCheck: IAssistant): string => assistantToCheck.name.split(" ")[0];
 
     return (
-        <div className="flex justify-center mb-8 w-full">
+        <div className="flex flex-wrap justify-center mb-8 w-full overscroll-y-auto border-b-2 pb-4">
             {assistantsList.map(assist => 
                 <div 
-                    className='flex flex-col items-center mr-4 cursor-pointer' 
+                    className='flex flex-col items-center mr-4 cursor-pointer min-w-64 min-h-32' 
                     key={assist._id}
                     onClick={() => selectAssistant(assist)}
                 >

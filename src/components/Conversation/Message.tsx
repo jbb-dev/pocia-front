@@ -30,8 +30,7 @@ const Message: React.FC<Props> = observer((props: Props) => {
                 <img
                     src={avatar}
                     alt="avatar"
-                    className="h-10 rounded-full"
-                    style={{ objectFit: 'cover' }}
+                    className="h-10 rounded-full object-fit: cover"
                 />
             </div>
             <div className='flex-grow'>

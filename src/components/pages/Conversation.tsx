@@ -1,12 +1,13 @@
 import React from 'react';
-import Message, { EWriterRole } from './Message';
+import Message, { EWriterRole } from '../Conversation/Message';
 import { observer } from 'mobx-react';
 import { DataStoreContext } from '../../store/rootStore';
 import Button from '../shared/Button';
+import SelectAssistant from '../Conversation/SelectAssistant';
 
 const Conversation: React.FC = observer(() => {
 
-    const { conversation } = React.useContext(DataStoreContext);
+    const { conversation, assistant } = React.useContext(DataStoreContext);
 
     const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const { value } = e.target;
@@ -17,13 +18,13 @@ const Conversation: React.FC = observer(() => {
 
     const createNewMessage = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        await conversation.sendMessage();
+        await conversation.sendMessage(assistant.selectedAssistant);
     };
 
     // Run fetch current conversation
     React.useEffect(() => {
         const controller = new AbortController();
-        conversation.getConversation();
+        conversation.getConversation(assistant.selectedAssistant);
         return () => controller.abort();
     }, []);
 
@@ -42,9 +43,14 @@ const Conversation: React.FC = observer(() => {
                 ref={messageContainerRef}
                 className="overflow-y-auto max-h-[69vh] px-4"
             >
-                {conversation.currentConversation?.map((mess, index) => 
-                    <Message data={mess} key={index} />
-                )}
+                <div>
+                    <SelectAssistant />  
+                </div>
+                <div>
+                    {conversation.currentConversation?.map((mess, index) => 
+                        <Message data={mess} key={index} />
+                    )}
+                </div>
             </div>
             <div className="fixed bottom-2 left-0 right-0 bg-white border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0 z-10 sm:ml-64 ml-0 ">
                 <textarea 

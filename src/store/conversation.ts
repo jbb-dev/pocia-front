@@ -3,6 +3,7 @@ import { api } from './../api/api';
 import { StoreAlert } from './alertStore';
 import { EToastStatus } from "../components/shared/ToastAlert";
 import { EWriterRole } from "../components/Conversation/Message";
+import { IAssistant } from "./assistantStore";
 
 export interface IMessage {
     senderRole: EWriterRole;
@@ -24,30 +25,36 @@ export const ConversationStore = types
         self.message = newMessage;
     },
 
-    getConversation : flow (function* () {
-        try {
-            const response = yield api.get(`${REACT_APP_API_URL}/api/conversation`);
-            if (response.status === 200)
-            {
-                self.currentConversation = response.data;
-            };
-        } catch (error: any) {
+    getConversation : flow (function* (assistant: IAssistant | null) {
+        if (assistant != null)
+        {
+            try {
+                const response = yield api.get(`${REACT_APP_API_URL}/api/conversation/${assistant._id}`);
+                if (response.status === 200)
+                {
+                    self.currentConversation = response.data;
+                };
+            } catch (error: any) {
                 const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
                 StoreAlert.alert.setAlert(EToastStatus.FAIL, message, error.response?.data?.errors);
-        };
+            };
+        }
     }),
 
-    sendMessage : flow (function* () {
+    sendMessage : flow (function* (assistant: IAssistant | null) {
         let conversation: IMessage[] | null = self.currentConversation != null ? [...self.currentConversation] : [];
         try {
-            const response = yield api.post(`${REACT_APP_API_URL}/api/chat`, self.message);
+            const response = yield api.post(`${REACT_APP_API_URL}/api/chat`, { 
+                message: self.message,
+                assistant: assistant
+            });
             if (response.status === 200)
             {
                 conversation.push(response.data as IMessage);
             }
         } catch (error: any) {
-                const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
-                StoreAlert.alert.setAlert(EToastStatus.FAIL, message, error.response?.data?.errors);
+            const message = error.response?.data?.message?.length > 0 ? error.response.data.message : "Des erreurs se sont produites :";
+            StoreAlert.alert.setAlert(EToastStatus.FAIL, message, error.response?.data?.errors);
         };
         self.message = null; // clear message
         self.currentConversation = cast(conversation);

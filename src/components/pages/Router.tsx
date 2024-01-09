@@ -6,7 +6,7 @@ import { ERoutes } from '../shared/Navigation/ERoutes';
 import Team from './Team';
 import Login from './Login';
 import SideBar from '../shared/Navigation/SideBar';
-import Conversation from '../Conversation/Conversation';
+import Conversation from './Conversation';
 import AssistantDetails from '../Assistant/AssistantDetails';
 import Profile from './Profile';
 import ToastAlert, { EToastStatus } from '../shared/ToastAlert';

@@ -43,6 +43,8 @@ export const ConversationStore = types
 
     sendMessage : flow (function* (assistant: IAssistant | null) {
         let conversation: IMessage[] | null = self.currentConversation != null ? [...self.currentConversation] : [];
+        conversation.push(self.message as IMessage); // add first the user message before waiting for the assistant response.
+
         try {
             const response = yield api.post(`${REACT_APP_API_URL}/api/chat`, { 
                 message: self.message,

@@ -23,10 +23,13 @@ const Conversation: React.FC = observer(() => {
 
     // Run fetch current conversation
     React.useEffect(() => {
-        const controller = new AbortController();
-        conversation.getConversation(assistant.selectedAssistant);
-        return () => controller.abort();
-    }, []);
+        if (assistant.selectedAssistant != null)
+        {
+            const controller = new AbortController();
+            conversation.getConversation(assistant.selectedAssistant);
+            return () => controller.abort();    
+        }
+    }, [assistant.selectedAssistant]);
 
     // Scroll to bottom
     React.useEffect(() =>

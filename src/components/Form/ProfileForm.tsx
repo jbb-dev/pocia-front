@@ -43,7 +43,7 @@ const ProfileForm : React.FC = () => {
             <Button 
                 type='submit'
                 label='Update'
-                action={() => console.log('button')}
+                action={() => null}
             />              
         </form>
     )

@@ -68,7 +68,7 @@ const RegisterForm: React.FC<Props> = (props: Props) => {
             <Button 
                 type='submit'
                 label='Sign Up'
-                action={() => console.log('button')}
+                action={() => null}
             />  
         </form>
     )

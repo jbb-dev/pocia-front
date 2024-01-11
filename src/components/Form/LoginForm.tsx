@@ -50,7 +50,7 @@ const LoginForm: React.FC = () => {
             <Button 
                 type='submit'
                 label='Login'
-                action={() => console.log('button')}
+                action={() => null}
             />            
         </form>
     )

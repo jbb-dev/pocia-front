@@ -13,7 +13,6 @@ export interface IToken {
 };
 
 const onRequest = (config: AxiosRequestConfig): AxiosRequestConfig => {
-    console.log('onRequest')
     const token: IToken = JSON.parse(sessionStorage.getItem('token') as string);
     if (config.headers != null)
     {
@@ -22,20 +21,16 @@ const onRequest = (config: AxiosRequestConfig): AxiosRequestConfig => {
     return config;
 };
 
-const onRequestError = (error: AxiosError): Promise<AxiosError> => {
-    console.log('onRequestError')
-    
+const onRequestError = (error: AxiosError): Promise<AxiosError> => {    
     StoreAlert.alert.setAlert(EToastStatus.FAIL, error.response?.data?.message, null);
     return Promise.reject(error);
 };
 
 const onResponse = (response: AxiosResponse): AxiosResponse => {
-    console.log('onResponse')
     return response;
 };
 
 const onResponseError = async (error: AxiosError) => {
-    console.log('onResponseError, error = ', error)
     // Network Error means backend is crashed or there is another network issue
     if (error.message === "Network Error")
     {

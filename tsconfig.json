@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/components/Assistant/AssistantCard.test.tsx", "src/components/Assistant/AssistantDetails.test.tsx"  ]
 }
